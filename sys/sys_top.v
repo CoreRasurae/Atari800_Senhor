@@ -69,47 +69,47 @@ module sys_top
 
 `else
 	//////////// VGA ///////////
-	output  [5:0] VGA_R,
+	/*output  [5:0] VGA_R,
 	output  [5:0] VGA_G,
 	output  [5:0] VGA_B,
 	inout         VGA_HS,
 	output		  VGA_VS,
-	input         VGA_EN,  // active low
+	input         VGA_EN,  // active low*/
 
 	/////////// AUDIO //////////
-	output		  AUDIO_L,
+	/*output		  AUDIO_L,
 	output		  AUDIO_R,
-	output		  AUDIO_SPDIF,
+	output		  AUDIO_SPDIF,*/
 
 	//////////// SDIO ///////////
-	inout   [3:0] SDIO_DAT,
+	/*inout   [3:0] SDIO_DAT,
 	inout         SDIO_CMD,
-	output        SDIO_CLK,
+	output        SDIO_CLK,*/
 
 	//////////// I/O ///////////
 	output        LED_USER,
 	output        LED_HDD,
-	output        LED_POWER,
-	input         BTN_USER,
-	input         BTN_OSD,
-	input         BTN_RESET,
+	//output        LED_POWER,
+	//input         BTN_USER,
+	//input         BTN_OSD,
+	//input         BTN_RESET,
 `endif
 
 	////////// I/O ALT /////////
-	output        SD_SPI_CS,
+	/*output        SD_SPI_CS,
 	input         SD_SPI_MISO,
 	output        SD_SPI_CLK,
 	output        SD_SPI_MOSI,
 
 	inout         SDCD_SPDIF,
 	output        IO_SCL,
-	inout         IO_SDA,
+	inout         IO_SDA,*/
 
 	////////// ADC //////////////
-	output        ADC_SCK,
+	/*output        ADC_SCK,
 	input         ADC_SDO,
 	output        ADC_SDI,
-	output        ADC_CONVST,
+	output        ADC_CONVST,*/
 
 	////////// MB KEY ///////////
 	input   [1:0] KEY,
@@ -118,13 +118,20 @@ module sys_top
 	input   [3:0] SW,
 
 	////////// MB LED ///////////
-	output  [7:0] LED,
+	output  [7:0] LED//,
 
 	///////// USER IO ///////////
-	inout   [6:0] USER_IO
+	//inout   [6:0] USER_IO
 );
 
 //////////////////////  Secondary SD  ///////////////////////////////////
+wire VGA_EN;
+wire [3:0] SDIO_DAT;
+wire [6:0] USER_IO;
+wire SD_SPI_MISO;
+
+wire BTN_RESET = 1'b0, BTN_OSD = 1'b0, BTN_USER = 1'b0;
+
 wire SD_CS, SD_CLK, SD_MOSI, SD_MISO, SD_CD;
 
 `ifndef MISTER_DUAL_SDRAM
